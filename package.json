@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-backend": "cd backend && npm run dev",
+    "start-frontend": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run start-backend\" \"npm run start-frontend\""
   },
   "repository": {
     "type": "git",
@@ -16,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Ahed27/modern-furniture-steel/issues"
   },
-  "homepage": "https://github.com/Ahed27/modern-furniture-steel#readme"
+  "homepage": "https://github.com/Ahed27/modern-furniture-steel#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
 }
