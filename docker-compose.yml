@@ -4,6 +4,7 @@ services:
     build: ./backend
     ports:
       - "5000:5000"
+    container_name: modern-furniture-steel-backend  
     env_file:
       - ./backend/.env
     environment:
@@ -17,7 +18,7 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "5173:80"
+      - "8080:80"
     depends_on:
       - backend
     environment:
