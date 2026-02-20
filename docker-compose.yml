@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   mongodb:
     image: mongo:6
@@ -7,7 +6,6 @@ services:
       - "27017:27017"
     environment:
       - MONGO_INITDB_DATABASE=modern_furniture_steel
-      # لتطوير محلي نترك المستخدم وكلمة المرور فارغين
       - MONGO_INITDB_ROOT_USERNAME=
       - MONGO_INITDB_ROOT_PASSWORD=
     volumes:
@@ -25,8 +23,7 @@ services:
     environment:
       - PORT=5000
       - NODE_ENV=production
-      - DB_URI=mongodb://mongodb:27017/modern_furniture_steel
-      # اختياري: يمكن استخدام متغيرات فردية إذا الكود يحتاجها
+      - MONGODB_URL=mongodb://mongodb:27017/modern_furniture_steel
       - DB_HOST=mongodb
       - DB_PORT=27017
       - DB_NAME=modern_furniture_steel
