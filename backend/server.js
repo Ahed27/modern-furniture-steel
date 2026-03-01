@@ -71,9 +71,20 @@ app.get('/api/categories/:id', asyncHandler(async (req, res) => {
   }
 }));
 
-// جلب كل المنتجات (متاح للجميع)
+// ✅ جلب كل المنتجات أو البحث عنها (متاح للجميع)
 app.get('/api/products', asyncHandler(async (req, res) => {
-  const products = await Product.find({});
+  // التقاط كلمة البحث من الرابط، وإنشاء شرط البحث
+  const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: 'i', // للبحث بغض النظر عن حالة الأحرف (مفيد للغة الإنجليزية إن وجدت)
+        },
+      }
+    : {};
+
+  // جلب المنتجات بناءً على شرط البحث (إن وجد) أو جلب الكل
+  const products = await Product.find({ ...keyword });
   res.json(products);
 }));
 
